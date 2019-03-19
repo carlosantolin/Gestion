@@ -27,10 +27,10 @@ public class Runner {
         session.close();
     }
 
-    public void delete(Session session){
+    private void delete(Session session){
          System.out.println("Borrando a Carlos");
 
-        Empleado carlos = (Empleado) session.get(Empleado.class, this.id);
+        Empleado carlos = session.get(Empleado.class, this.id);
 
         session.beginTransaction();
         session.delete(carlos);
@@ -38,9 +38,9 @@ public class Runner {
 
     }
 
-    public void update(Session session){
+    private void update(Session session){
         System.out.println("Cambiando el departamento de Carlos");
-        Empleado carlos = (Empleado) session.get(Empleado.class, this.id);
+        Empleado carlos = session.get(Empleado.class, this.id);
         carlos.setDepartamento("Publicidad");
 
         session.beginTransaction();
@@ -48,7 +48,7 @@ public class Runner {
         session.getTransaction().commit();
     }
 
-    public void create(Session session) {
+    private void create(Session session) {
         Empleado nuevo = new Empleado();
         nuevo.setDepartamento("Marketing");
         nuevo.setNombre("Carlos");
@@ -67,7 +67,7 @@ public class Runner {
         this.id=nuevo.getId();
     }
 
-    public void read(Session session){
+    private void read(Session session){
         Query q = session.createQuery("select _nombre from Empleado _nombre");
 
         List<Empleado> empleados = q.list();
