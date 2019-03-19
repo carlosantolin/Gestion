@@ -35,6 +35,15 @@ public class EmpleadoDao {
         return q.list();
     }
 
+    public List<Empleado> buscarPorAtributo(Object campo, Object valor) {
+        Query q = this.session.createQuery("from Empleado where " + campo + " = :atributo");
+        q.setParameter("atributo", valor);
+
+
+        return q.list();
+    }
+
+
     public void actualizar(long id, String nombre, String departamento) {
 
 

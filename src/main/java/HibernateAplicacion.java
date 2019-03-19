@@ -3,6 +3,7 @@ import domain.Empleado;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import javax.imageio.IIOException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -37,7 +38,8 @@ public class HibernateAplicacion {
                         + "3) Editar empleado. "
                         + "4) Borrar empleado. "
                         + "5) Listar empleados. "
-                        + "6) Salir");
+                        + "6) Encuentra empleado por atributo. "
+                        + "7) Salir");
                 int option = Integer.parseInt(userInputReader.readLine());
 
                 switch (option) {
@@ -56,8 +58,11 @@ public class HibernateAplicacion {
                     case 5:
                         listarEmpleados();
                         break;
-                    case 6:
+                    case 7:
                         return;
+                    case 6:
+                        buscarEmpleadoPorAtributo();
+                        break;
                 }
             }
         }
@@ -73,6 +78,16 @@ public class HibernateAplicacion {
             for(Empleado e : empleados) {
                 System.out.println("Esto es lo que hay " + e.toString());
             }
+        }
+
+        private void buscarEmpleadoPorAtributo() throws IOException {
+            Object campo = requestStringInput("En que columna quieres buscar? ");
+            Object valor  = requestStringInput("Que buscas? ");
+            List<Empleado> empleados = empleadoDao.buscarPorAtributo(campo, valor);
+            for(Empleado e : empleados) {
+                System.out.println("Esto es lo que hay " + e.toString());
+            }
+
         }
 
         private void buscarEmpleadoPorId() throws IOException {
