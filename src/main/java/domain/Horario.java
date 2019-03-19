@@ -28,6 +28,38 @@ public class Horario {
         this.horas = horas;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Empleado getAsignado() {
+        return asignado;
+    }
+
+    public void setAsignado(Empleado asignado) {
+        this.asignado = asignado;
+    }
+
+    public Tarea getTarea() {
+        return tarea;
+    }
+
+    public void setTarea(Tarea tarea) {
+        this.tarea = tarea;
+    }
+
+    public int getHoras() {
+        return horas;
+    }
+
+    public void setHoras(int horas) {
+        this.horas = horas;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
