@@ -21,6 +21,7 @@
 
 
         <mapping class="domain.Empleado"/>
+        <mapping class="domain.Jefe"/>
 
     </session-factory>
 </hibernate-configuration>
