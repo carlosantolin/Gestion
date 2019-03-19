@@ -14,7 +14,7 @@
       <Comment>default administrative connection database</Comment>
       <StateNumber>1889</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>1995</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2015</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </database>
@@ -68,7 +68,7 @@
       <ObjectId>16404</ObjectId>
       <StateNumber>1920</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>1996</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2016</IntrospectionStateNumber>
       <Visible>1</Visible>
     </schema>
     <access-method id="12" parent="3" name="btree">
@@ -119,102 +119,195 @@
     <table id="20" parent="11" name="empleado">
       <ObjectId>16466</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>1959</StateNumber>
+      <StateNumber>2013</StateNumber>
     </table>
     <table id="21" parent="11" name="jefe">
       <ObjectId>16488</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>1994</StateNumber>
+      <StateNumber>1999</StateNumber>
     </table>
-    <column id="22" parent="19" name="id">
+    <table id="22" parent="11" name="tarea">
+      <ObjectId>16493</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>2014</StateNumber>
+    </table>
+    <table id="23" parent="11" name="tarea_empleado">
+      <ObjectId>16516</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>2014</StateNumber>
+    </table>
+    <column id="24" parent="19" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>1917</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <column id="23" parent="19" name="departamento">
+    <column id="25" parent="19" name="departamento">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <StateNumber>1917</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="24" parent="19" name="nombre">
+    <column id="26" parent="19" name="nombre">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <StateNumber>1917</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="25" parent="19" name="empleado_pkey">
+    <index id="27" parent="19" name="empleado_pkey">
       <ObjectId>16402</ObjectId>
       <StateNumber>1917</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="26" parent="19" name="empleado_pkey">
+    <key id="28" parent="19" name="empleado_pkey">
       <ObjectId>16403</ObjectId>
       <StateNumber>1917</StateNumber>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>empleado_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="27" parent="20" name="id">
+    <column id="29" parent="20" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>1959</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <column id="28" parent="20" name="departamento">
+    <column id="30" parent="20" name="departamento">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <StateNumber>1959</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="29" parent="20" name="nombre">
+    <column id="31" parent="20" name="nombre">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <StateNumber>1959</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="30" parent="20" name="empleado_pkey">
+    <index id="32" parent="20" name="empleado_pkey">
       <ObjectId>16472</ObjectId>
       <StateNumber>1959</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="31" parent="20" name="empleado_pkey">
+    <key id="33" parent="20" name="empleado_pkey">
       <ObjectId>16473</ObjectId>
       <StateNumber>1959</StateNumber>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>empleado_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="32" parent="21" name="id">
+    <column id="34" parent="21" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>1994</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <column id="33" parent="21" name="nombre">
+    <column id="35" parent="21" name="nombre">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <StateNumber>1994</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="34" parent="21" name="jefe_pkey">
+    <index id="36" parent="21" name="jefe_pkey">
       <ObjectId>16491</ObjectId>
       <StateNumber>1994</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="35" parent="21" name="jefe_pkey">
+    <key id="37" parent="21" name="jefe_pkey">
       <ObjectId>16492</ObjectId>
       <StateNumber>1994</StateNumber>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>jefe_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
+    <column id="38" parent="22" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1997</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="39" parent="22" name="completada">
+      <Position>2</Position>
+      <DataType>boolean|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1997</StateNumber>
+      <TypeId>16</TypeId>
+    </column>
+    <column id="40" parent="22" name="descripcion">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>1997</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="41" parent="22" name="jefe_id">
+      <Position>4</Position>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>1997</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="42" parent="22" name="tarea_pkey">
+      <ObjectId>16496</ObjectId>
+      <StateNumber>1997</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="43" parent="22" name="tarea_pkey">
+      <ObjectId>16497</ObjectId>
+      <StateNumber>1997</StateNumber>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>tarea_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="44" parent="22" name="fkmsol18mxvqe3utbkkkeqxiom">
+      <ObjectId>16501</ObjectId>
+      <StateNumber>1999</StateNumber>
+      <ColNames>jefe_id</ColNames>
+      <RefTableId>16488</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>jefe</RefTableName>
+      <RefKeyName>jefe_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="45" parent="23" name="tarea_id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>2012</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="46" parent="23" name="empleado_id">
+      <Position>2</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>2012</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <foreign-key id="47" parent="23" name="fk7kqvurig5ydjc7kvix1ei7iol">
+      <ObjectId>16524</ObjectId>
+      <StateNumber>2014</StateNumber>
+      <ColNames>tarea_id</ColNames>
+      <RefTableId>16493</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>tarea</RefTableName>
+      <RefKeyName>tarea_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="48" parent="23" name="fk2i3w7q10cx4ky4r94nh4sjv3u">
+      <ObjectId>16519</ObjectId>
+      <StateNumber>2013</StateNumber>
+      <ColNames>empleado_id</ColNames>
+      <RefTableId>16466</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>empleado</RefTableName>
+      <RefKeyName>empleado_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
   </database-model>
 </dataSource>

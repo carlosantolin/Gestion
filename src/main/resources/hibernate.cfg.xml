@@ -22,6 +22,7 @@
 
         <mapping class="domain.Empleado"/>
         <mapping class="domain.Jefe"/>
+        <mapping class="dao.Tarea"/>
 
     </session-factory>
 </hibernate-configuration>
