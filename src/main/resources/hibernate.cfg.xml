@@ -22,7 +22,7 @@
 
         <mapping class="domain.Empleado"/>
         <mapping class="domain.Jefe"/>
-        <mapping class="dao.Tarea"/>
+        <mapping class="domain.Tarea"/>
         <mapping class="domain.Horario"/>
 
     </session-factory>

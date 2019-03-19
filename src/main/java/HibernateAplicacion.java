@@ -2,6 +2,7 @@ import dao.EmpleadoDao;
 import domain.Empleado;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import service.EmpleadoService;
 
 import javax.imageio.IIOException;
 import java.io.BufferedReader;
@@ -14,6 +15,7 @@ public class HibernateAplicacion {
 
         private final EmpleadoDao empleadoDao;
         private final BufferedReader userInputReader;
+        private final EmpleadoService empleadoService;
 
         public static void main(String[] args) throws Exception {
             SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
@@ -22,12 +24,14 @@ public class HibernateAplicacion {
             EmpleadoDao empleadoDao = new EmpleadoDao(sessionFactory);
             BufferedReader userInputReader =
                     new BufferedReader(new InputStreamReader(System.in));
+
             new HibernateAplicacion(empleadoDao, userInputReader).run();
         }
 
         public HibernateAplicacion(EmpleadoDao empleadoDao, BufferedReader userInputReader) {
             this.empleadoDao = empleadoDao;
             this.userInputReader = userInputReader;
+            this.empleadoService = new EmpleadoService(userInputReader, empleadoDao);
         }
 
         private void run() throws IOException {
@@ -36,7 +40,7 @@ public class HibernateAplicacion {
                         + "1) Insertar nuevo empleado. "
                         + "2) Encuentra un empleado. "
                         + "3) Editar empleado. "
-                        + "4) Borrar empleado. "
+                        + "4) Borrar empleado. \n"
                         + "5) Listar empleados. "
                         + "6) Encuentra empleado por atributo. "
                         + "7) Salir");
@@ -44,79 +48,33 @@ public class HibernateAplicacion {
 
                 switch (option) {
                     case 1:
-                        persistirEmpleado();
+                        empleadoService.persistirEmpleado();
                         break;
                     case 2:
-                        buscarEmpleadoPorId();
+                        empleadoService.buscarEmpleadoPorId();
                         break;
                     case 3:
-                        actualizarEmpleado();
+                        empleadoService.actualizarEmpleado();
                         break;
                     case 4:
-                        borrarEmpleado();
+                        empleadoService.borrarEmpleado();
                         break;
                     case 5:
-                        listarEmpleados();
+                        empleadoService.listarEmpleados();
                         break;
                     case 7:
                         return;
                     case 6:
-                        buscarEmpleadoPorAtributo();
+                        empleadoService.buscarEmpleadoPorAtributo();
                         break;
+
+
                 }
             }
         }
 
-        private void persistirEmpleado() throws IOException {
-            String nombre = requestStringInput("nombre del empleado");
-            String departamento = requestStringInput("departamento del empleado");
-            empleadoDao.persistir(nombre, departamento);
-        }
 
-        private void listarEmpleados() {
-            List<Empleado> empleados = empleadoDao.listar();
-            for(Empleado e : empleados) {
-                System.out.println("Esto es lo que hay " + e.toString());
-            }
-        }
 
-        private void buscarEmpleadoPorAtributo() throws IOException {
-            Object campo = requestStringInput("En que columna quieres buscar? ");
-            Object valor  = requestStringInput("Que buscas? ");
-            List<Empleado> empleados = empleadoDao.buscarPorAtributo(campo, valor);
-            for(Empleado e : empleados) {
-                System.out.println("Esto es lo que hay " + e.toString());
-            }
-
-        }
-
-        private void buscarEmpleadoPorId() throws IOException {
-            int id = requestIntegerInput("Id del empleado");
-            Empleado empleado = empleadoDao.buscar(id);
-            System.out.print(empleado.toString());
-        }
-
-        private void actualizarEmpleado() throws IOException {
-            int id = requestIntegerInput("id del empleado");
-            String nombre = requestStringInput("nombre del empleado");
-            String departamento = requestStringInput("departamento de empleado");
-            empleadoDao.actualizar(id, nombre, departamento);
-        }
-
-        private void borrarEmpleado() throws IOException {
-            int id = requestIntegerInput("Id del empleado");
-            empleadoDao.borrar(id);
-        }
-
-        private String requestStringInput(String request) throws IOException {
-            System.out.printf("Introduce %s: ", request);
-            return userInputReader.readLine();
-        }
-
-        private int requestIntegerInput(String request) throws IOException {
-            System.out.printf("Introduce %s: ", request);
-            return Integer.parseInt(userInputReader.readLine());
-        }
 
     }
 

@@ -1,7 +1,5 @@
 package domain;
 
-import dao.Tarea;
-
 import javax.persistence.*;
 
 @Entity

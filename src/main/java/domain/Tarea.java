@@ -1,7 +1,4 @@
-package dao;
-
-import domain.Empleado;
-import domain.Jefe;
+package domain;
 
 import javax.persistence.*;
 import java.util.ArrayList;
