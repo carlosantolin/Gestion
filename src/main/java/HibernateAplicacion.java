@@ -6,10 +6,10 @@ import org.hibernate.cfg.Configuration;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 
 
-
-    public class HibernateAplicacion {
+public class HibernateAplicacion {
 
         private final EmpleadoDao empleadoDao;
         private final BufferedReader userInputReader;
@@ -36,7 +36,8 @@ import java.io.InputStreamReader;
                         + "2) Encuentra un empleado. "
                         + "3) Editar empleado. "
                         + "4) Borrar empleado. "
-                        + "5) Salir");
+                        + "5) Listar empleados. "
+                        + "6) Salir");
                 int option = Integer.parseInt(userInputReader.readLine());
 
                 switch (option) {
@@ -53,6 +54,9 @@ import java.io.InputStreamReader;
                         borrarEmpleado();
                         break;
                     case 5:
+                        listarEmpleados();
+                        break;
+                    case 6:
                         return;
                 }
             }
@@ -62,6 +66,13 @@ import java.io.InputStreamReader;
             String nombre = requestStringInput("nombre del empleado");
             String departamento = requestStringInput("departamento del empleado");
             empleadoDao.persistir(nombre, departamento);
+        }
+
+        private void listarEmpleados() {
+            List<Empleado> empleados = empleadoDao.listar();
+            for(Empleado e : empleados) {
+                System.out.println("Esto es lo que hay " + e.toString());
+            }
         }
 
         private void buscarEmpleadoPorId() throws IOException {

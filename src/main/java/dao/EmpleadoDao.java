@@ -3,7 +3,9 @@ package dao;
 import domain.Empleado;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 
+import java.util.List;
 
 
 public class EmpleadoDao {
@@ -25,6 +27,12 @@ public class EmpleadoDao {
 
     public Empleado buscar(long id){
         return session.get(Empleado.class, id);
+    }
+
+    public List<Empleado> listar(){
+        Query q = session.createQuery(" from Empleado");
+
+        return q.list();
     }
 
     public void actualizar(long id, String nombre, String departamento) {
