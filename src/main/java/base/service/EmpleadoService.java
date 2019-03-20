@@ -15,8 +15,6 @@ import java.util.List;
 public class EmpleadoService {
 
 
-    private  BufferedReader userInputReader;
-
     @Autowired
     private  EmpleadoDao empleadoDao;
 

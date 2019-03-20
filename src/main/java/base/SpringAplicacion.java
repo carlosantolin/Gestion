@@ -1,6 +1,8 @@
 package base;
 
 import base.service.EmpleadoService;
+import base.service.JefeService;
+import base.service.TareaService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Arrays;
@@ -12,7 +14,10 @@ public class SpringAplicacion {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 
         System.out.println(Arrays.asList(context.getBeanDefinitionNames()));
-        EmpleadoService servicio = (EmpleadoService) context.getBean("empleadoService");
-        servicio.persistirEmpleado("carlo", "menta");
+        EmpleadoService empleadoService = (EmpleadoService) context.getBean("empleadoService");
+        JefeService servicioJefe = (JefeService) context.getBean("jefeService");
+        TareaService tareaService = (TareaService) context.getBean("tareaService");
+
+
     }
 }

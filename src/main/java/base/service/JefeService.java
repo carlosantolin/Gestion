@@ -2,20 +2,24 @@ package base.service;
 
 import base.dao.JefeDao;
 import base.domain.Jefe;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 
+@Service("jefeService")
+@Transactional
 public class JefeService {
 
-    private final BufferedReader userInputReader;
-    private final JefeDao jefeDao;
 
-    public JefeService(BufferedReader userInputReader, JefeDao jefeDao) {
-        this.userInputReader = userInputReader;
-        this.jefeDao = jefeDao;
-    }
+    @Autowired
+    private  JefeDao jefeDao;
+
+
 
     public void persistirJefe() throws IOException {
         String nombre = requestStringInput("nombre del jefe");
@@ -69,11 +73,11 @@ public class JefeService {
 
     private String requestStringInput(String request) throws IOException {
         System.out.printf("Introduce %s: ", request);
-        return userInputReader.readLine();
+        return new BufferedReader(new InputStreamReader(System.in)).readLine();
     }
 
     private int requestIntegerInput(String request) throws IOException {
         System.out.printf("Introduce %s: ", request);
-        return Integer.parseInt(userInputReader.readLine());
+        return Integer.parseInt(new BufferedReader(new InputStreamReader(System.in)).readLine());
     }
 }
