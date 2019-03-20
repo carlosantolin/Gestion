@@ -14,7 +14,7 @@
       <Comment>default administrative connection database</Comment>
       <StateNumber>1889</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>2020</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2028</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </database>
@@ -68,7 +68,7 @@
       <ObjectId>16404</ObjectId>
       <StateNumber>1920</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>2021</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2029</IntrospectionStateNumber>
       <Visible>1</Visible>
     </schema>
     <access-method id="12" parent="3" name="btree">

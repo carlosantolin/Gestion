@@ -1,6 +1,10 @@
 import dao.EmpleadoDao;
 import dao.JefeDao;
+import dao.TareaDao;
 import domain.Empleado;
+import domain.Jefe;
+import domain.Tarea;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import service.EmpleadoService;
@@ -10,6 +14,7 @@ import javax.imageio.IIOException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,31 +22,35 @@ public class HibernateAplicacion {
 
         private final EmpleadoDao empleadoDao;
         private final JefeDao jefeDao;
+        private final TareaDao tareaDao;
         private final BufferedReader userInputReader;
         private final EmpleadoService empleadoService;
         private final JefeService jefeService;
 
         public static void main(String[] args) throws Exception {
             SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-            //Session session = sessionFactory.openSession();
+            Session session = sessionFactory.openSession();
 
             EmpleadoDao empleadoDao = new EmpleadoDao(sessionFactory);
             JefeDao jefeDao = new JefeDao(sessionFactory);
+            TareaDao tareaDao = new TareaDao(sessionFactory);
             BufferedReader userInputReader =
                     new BufferedReader(new InputStreamReader(System.in));
 
-            new HibernateAplicacion(empleadoDao, jefeDao,  userInputReader).run();
+            new HibernateAplicacion(empleadoDao, jefeDao, tareaDao,  userInputReader).run(session);
         }
 
-        public HibernateAplicacion(EmpleadoDao empleadoDao, JefeDao jefeDao, BufferedReader userInputReader) {
+        public HibernateAplicacion(EmpleadoDao empleadoDao, JefeDao jefeDao,
+                                   TareaDao tareaDao,BufferedReader userInputReader) {
             this.empleadoDao = empleadoDao;
             this.jefeDao = jefeDao;
+            this.tareaDao = tareaDao;
             this.userInputReader = userInputReader;
             this.jefeService = new JefeService(userInputReader, jefeDao);
             this.empleadoService = new EmpleadoService(userInputReader, empleadoDao);
         }
 
-        private void run() throws IOException {
+        private void run(Session session) throws IOException {
             while (true) {
                 System.out.println("\nIntroudce tu opción: \n"
                                 + "1) Empleados. \n"
@@ -59,9 +68,34 @@ public class HibernateAplicacion {
                         break;
                     case 3:
                         return;
+                    case 4:
+                        pruebaMagica(session);
+                        break;
 
                 }
             }
+        }
+
+        private void pruebaMagica(Session session){
+            Empleado carlos = new Empleado("Carlos", "Desarrollo");
+            Empleado laura = new Empleado("Laura", "Marketing");
+
+            List<Empleado> empleados = new ArrayList<Empleado>();
+            empleados.add(carlos);
+            empleados.add(laura);
+
+            Jefe jefe = new Jefe("Jefazo");
+
+            Tarea tarea = new Tarea(empleados, jefe, "probando", false);
+
+            session.beginTransaction();
+            session.save(carlos);
+            session.save(laura);
+            session.save(jefe);
+            session.save(tarea);
+            session.getTransaction().commit();
+            System.out.println("Finalizada prueba");
+
         }
 
         private void menuEmpleados() throws IOException {
