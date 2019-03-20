@@ -20,10 +20,10 @@
 
 
 
-        <mapping class="domain.Empleado"/>
-        <mapping class="domain.Jefe"/>
-        <mapping class="domain.Tarea"/>
-        <mapping class="domain.Horario"/>
+        <mapping class="base.domain.Empleado"/>
+        <mapping class="base.domain.Jefe"/>
+        <mapping class="base.domain.Tarea"/>
+        <mapping class="base.domain.Horario"/>
 
     </session-factory>
 </hibernate-configuration>

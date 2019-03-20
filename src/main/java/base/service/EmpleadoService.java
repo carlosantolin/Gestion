@@ -1,29 +1,33 @@
-package service;
+package base.service;
 
-import dao.EmpleadoDao;
-import domain.Empleado;
+import base.dao.EmpleadoDao;
+import base.domain.Empleado;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 
+@Service("empleadoService")
 public class EmpleadoService {
 
 
-    private final BufferedReader userInputReader;
-    private final EmpleadoDao empleadoDao;
+    private  BufferedReader userInputReader;
 
-    public EmpleadoService(BufferedReader userInputReader, EmpleadoDao empleadoDao) {
-        this.userInputReader = userInputReader;
-        this.empleadoDao = empleadoDao;
-    }
+    @Autowired
+    private  EmpleadoDao empleadoDao;
 
-    public void persistirEmpleado() throws IOException {
-        String nombre = requestStringInput("nombre del empleado");
-        String departamento = requestStringInput("departamento del empleado");
+
+    @Transactional
+    public void persistirEmpleado(String nombre, String departamento)  {
+
         empleadoDao.persistir(nombre, departamento);
     }
 
+    @Transactional
     public void listarEmpleados() {
         List<Empleado> empleados = empleadoDao.listar();
         for(Empleado e : empleados) {
@@ -31,6 +35,7 @@ public class EmpleadoService {
         }
     }
 
+    @Transactional
     public void buscarEmpleadoPorAtributo() throws IOException {
         Object campo = requestStringInput("En que columna quieres buscar? ");
         Object valor  = requestStringInput("Que buscas? ");
@@ -47,6 +52,7 @@ public class EmpleadoService {
 
     }
 
+    @Transactional
     public void buscarEmpleadoPorId() throws IOException {
         int id = requestIntegerInput("Id del empleado");
         Empleado empleado = empleadoDao.buscar(id);
@@ -58,6 +64,7 @@ public class EmpleadoService {
         }
     }
 
+    @Transactional
     public void actualizarEmpleado() throws IOException {
         int id = requestIntegerInput("id del empleado");
         String nombre = requestStringInput("nombre del empleado");
@@ -65,6 +72,7 @@ public class EmpleadoService {
         empleadoDao.actualizar(id, nombre, departamento);
     }
 
+    @Transactional
     public void borrarEmpleado() throws IOException {
         int id = requestIntegerInput("Id del empleado");
         empleadoDao.borrar(id);
@@ -72,12 +80,12 @@ public class EmpleadoService {
 
     private String requestStringInput(String request) throws IOException {
         System.out.printf("Introduce %s: ", request);
-        return userInputReader.readLine();
+        return new BufferedReader(new InputStreamReader(System.in)).readLine();
     }
 
     private int requestIntegerInput(String request) throws IOException {
         System.out.printf("Introduce %s: ", request);
-        return Integer.parseInt(userInputReader.readLine());
+        return Integer.parseInt(new BufferedReader(new InputStreamReader(System.in)).readLine());
     }
 
 }

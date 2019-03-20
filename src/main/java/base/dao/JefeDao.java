@@ -1,6 +1,6 @@
-package dao;
+package base.dao;
 
-import domain.Jefe;
+import base.domain.Jefe;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;

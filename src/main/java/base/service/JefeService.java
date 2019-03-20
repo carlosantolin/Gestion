@@ -1,7 +1,7 @@
-package service;
+package base.service;
 
-import dao.JefeDao;
-import domain.Jefe;
+import base.dao.JefeDao;
+import base.domain.Jefe;
 
 import java.io.BufferedReader;
 import java.io.IOException;
