@@ -51,7 +51,7 @@ public class JefeDao {
         jefe.setNombre(nombre);
 
         this.session.beginTransaction();
-        this.session.saveOrUpdate(new Jefe(nombre));
+        this.session.saveOrUpdate(jefe);
         this.session.getTransaction().commit();
     }
 

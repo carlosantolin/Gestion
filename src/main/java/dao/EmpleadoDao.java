@@ -52,7 +52,7 @@ public class EmpleadoDao {
         empleado.setNombre(nombre);
 
         this.session.beginTransaction();
-        this.session.saveOrUpdate(new Empleado(nombre, departamento));
+        this.session.saveOrUpdate(empleado);
         this.session.getTransaction().commit();
     }
 

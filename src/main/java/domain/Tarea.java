@@ -51,6 +51,10 @@ public class Tarea {
         this.empleadosAsignados = empleadosAsignados;
     }
 
+    public void pushEmpleado(Empleado empleado){
+        this.empleadosAsignados.add(empleado);
+    }
+
     public Jefe getJefe() {
         return jefe;
     }
